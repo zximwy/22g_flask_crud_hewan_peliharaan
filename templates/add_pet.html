@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-4">
+  <h2 class="text-center">Tambah Hewan Peliharaan</h2>
+  <form method="POST" onsubmit="return validateForm()">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.name.label(class="form-label") }} {{
+      form.name(class="form-control", placeholder="Masukkan nama hewan") }}
+    </div>
+    <div class="form-group">
+      {{ form.species.label(class="form-label") }} {{
+      form.species(class="form-control", placeholder="Masukkan spesies") }}
+    </div>
+    <div class="form-group">
+      {{ form.breed.label(class="form-label") }} {{
+      form.breed(class="form-control", placeholder="Masukkan ras") }}
+    </div>
+    <div class="form-group">
+      {{ form.age.label(class="form-label") }} {{ form.age(class="form-control",
+      placeholder="Masukkan usia") }}
+    </div>
+    <div class="form-group">
+      {{ form.weight.label(class="form-label") }} {{
+      form.weight(class="form-control", placeholder="Masukkan berat") }}
+    </div>
+    <button type="submit" class="btn btn-primary">Tambah Hewan</button>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Kembali</a>
+  </form>
+</div>
+
+<script>
+  function validateForm() {
+    const name = document.forms[0]["name"].value;
+    const species = document.forms[0]["species"].value;
+    const breed = document.forms[0]["breed"].value;
+    const age = document.forms[0]["age"].value;
+    const weight = document.forms[0]["weight"].value;
+    if (!name || !species || !breed || !age || !weight) {
+      alert("Semua field harus diisi!");
+      return false;
+    }
+    return true;
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Register</h2>
+<form method="POST" onsubmit="return validateForm()">
+  <div>
+    {{ form.name.label(class="form-label") }} {{ form.name(class="form-control")
+    }}
+  </div>
+  <div>
+    {{ form.email.label(class="form-label") }} {{
+    form.email(class="form-control") }}
+  </div>
+  <div>
+    {{ form.password.label(class="form-label") }} {{
+    form.password(class="form-control") }}
+  </div>
+  <div class="form-group">{{ form.submit(class="btn btn-primary") }}</div>
+</form>
+
+<script>
+  function validateForm() {
+    const name = document.forms[0]["name"].value;
+    const email = document.forms[0]["email"].value;
+    const password = document.forms[0]["password"].value;
+    if (!name || !email || !password) {
+      alert("Semua field harus diisi!");
+      return false;
+    }
+    return true;
+  }
+</script>
+{% endblock %}

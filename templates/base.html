@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <title>Pet Management System</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{{ url_for('home') }}">Pet Management</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          {% if current_user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+          </li>
+          {% endif %}
+
+          <a href="{{ url_for('account') }}" class="btn btn-info">Akun Saya</a>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4 content">
+      {% with messages = get_flashed_messages() %} {% if messages %}
+      <div class="alert alert-info">
+        {% for message in messages %}
+        <p>{{ message }}</p>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %} {% block content %}
+      <h2 class="text-center">Welcome to the Pet Management System</h2>
+      <p class="text-center">
+        Aplikasi ini memungkinkan Anda untuk mengelola hewan peliharaan Anda
+        dengan mudah. Anda dapat mendaftar, masuk, dan menambahkan hewan
+        peliharaan Anda ke profil Anda.
+      </p>
+      <p class="text-center">
+        Gunakan bilah navigasi untuk mengakses berbagai bagian aplikasi.
+      </p>
+
+      <h3 class="text-center">Some Cute Pets</h3>
+      <div class="row">
+        <div class="col-md-4 text-center">
+          <img
+            src="{{ url_for('static', filename='images/dog1.jpg') }}"
+            alt="Cute Dog"
+            class="pet-image"
+          />
+          <p>Dog</p>
+        </div>
+        <div class="col-md-4 text-center">
+          <img
+            src="{{ url_for('static', filename='images/car1.jpeg') }}"
+            alt="Cute Cat"
+            class="pet-image"
+          />
+          <p>Cat</p>
+        </div>
+        <div class="col-md-4 text-center">
+          <img
+            src="{{ url_for('static', filename='images/bird1.png') }}"
+            alt="Cute Bird"
+            class="pet-image"
+          />
+          <p>Bird</p>
+        </div>
+      </div>
+      {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+      <div class="text-center p-3">
+        © 2023 Pet Management System. All rights reserved.
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+<h2>Selamat datang di Sistem Manajemen Hewan Peliharaan</h2>
+<p>
+  Aplikasi ini memungkinkan Anda untuk mengelola hewan peliharaan Anda dengan
+  mudah. Anda dapat mendaftar, masuk, dan menambahkan hewan peliharaan Anda ke
+  profil Anda.
+</p>
+<p>Fitur utama:</p>
+<ul>
+  <li>Menambahkan, mengedit, dan menghapus hewan peliharaan</li>
+  <li>Melihat daftar hewan peliharaan Anda</li>
+  <li>Mencari hewan peliharaan dengan mudah</li>
+</ul>
+<p>
+  <a href="{{ url_for('register') }}">Register</a> or
+  <a href="{{ url_for('login') }}">Login</a> to manage your pets.
+</p>
+{% endblock %}
